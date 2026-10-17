@@ -41,7 +41,7 @@ public final class AuctionConfirmMenu extends Menu {
         int slot = e.getSlot();
         if (slot == 11) {
             plugin.auction().buy(p, listing.id());
-            Bukkit.getScheduler().runTask(plugin, p::closeInventory);
+            Bukkit.getScheduler().runTask(plugin, () -> p.closeInventory());
         } else if (slot == 15) {
             openLater(p, new AuctionMenu(plugin, p, 0, false));
         }
