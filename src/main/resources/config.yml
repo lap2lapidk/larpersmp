@@ -1,0 +1,244 @@
+# ============================================================
+#  SMPCore configuration
+#  Colors use & codes. Reload with /smpcore reload
+# ============================================================
+
+scoreboard-title: "&6&lSMP"
+scoreboard-footer: "&eplay.yourserver.net"
+
+starting-balance: 1000
+kill-reward: 100
+
+# Given to a player the first time they join
+starter-kit:
+  - {material: BREAD, amount: 16}
+  - {material: STONE_PICKAXE, amount: 1}
+  - {material: STONE_AXE, amount: 1}
+  - {material: TORCH, amount: 16}
+
+teleport:
+  warmup-seconds: 3          # staff (mod+) skip the warmup
+  tpa-timeout-seconds: 60
+
+rtp:
+  world: world
+  min-radius: 500
+  max-radius: 5000
+  cooldown-seconds: 30       # staff (mod+) skip the cooldown
+
+auction:
+  tax-percent: 5
+  duration-hours: 48
+  max-listings: 10
+  min-price: 1
+  max-price: 1000000000
+
+# ------------------------------------------------------------
+#  Progression map
+#  Member tiers are earned automatically through playtime.
+#  Each tier pays its reward once, raises the home limit and
+#  adds a bonus to everything sold with /sell.
+#  (Mods get +2 homes, admins get +50.)
+# ------------------------------------------------------------
+progression:
+  tiers:
+    - {name: Newcomer, hours: 0,   reward: 0,      max-homes: 2,  sell-bonus: 0,  icon: WOODEN_PICKAXE,    color: "&7"}
+    - {name: Regular,  hours: 2,   reward: 2500,   max-homes: 3,  sell-bonus: 5,  icon: STONE_PICKAXE,     color: "&a"}
+    - {name: Veteran,  hours: 10,  reward: 10000,  max-homes: 5,  sell-bonus: 10, icon: IRON_PICKAXE,      color: "&b"}
+    - {name: Elite,    hours: 30,  reward: 50000,  max-homes: 8,  sell-bonus: 20, icon: DIAMOND_PICKAXE,   color: "&d"}
+    - {name: Legend,   hours: 100, reward: 250000, max-homes: 12, sell-bonus: 35, icon: NETHERITE_PICKAXE, color: "&6"}
+  # Text shown on the staff ladder at the bottom of /progress
+  staff-ladder:
+    member:
+      - "&7Everyone starts here."
+      - "&7Play to climb the tier map above."
+      - "&7Unlocks homes, /sell bonuses and rewards."
+    mod:
+      - "&7Granted by an admin to trusted members."
+      - "&7/mute /unmute /kick /vanish /sc /invsee /stp"
+      - "&7No teleport warmup or cooldowns, +2 homes."
+    admin:
+      - "&7Granted by the server owner only."
+      - "&7Everything mods can do, plus /ban /unban"
+      - "&7/rank /eco /setspawn /setwarp and more."
+
+# Extra permission nodes applied per rank (ranks stack: admin = member + mod + admin).
+# Prefix a node with "-" to deny it.
+rank-permissions:
+  member: []
+  mod:
+    - minecraft.command.teleport
+    - minecraft.command.tp
+  admin:
+    - minecraft.command.gamemode
+    - minecraft.command.give
+    - minecraft.command.time
+    - minecraft.command.weather
+    - minecraft.command.kill
+    - minecraft.command.effect
+    - minecraft.command.clear
+
+# ------------------------------------------------------------
+#  Shop
+#  buy: price to purchase 1 (0 = not sold in /shop)
+#  sell: price paid per item by /sell (0 = cannot be sold)
+#  Max 45 items shown per page, extra items get extra pages.
+# ------------------------------------------------------------
+shop:
+  categories:
+    blocks:
+      title: "&aBlocks"
+      icon: GRASS_BLOCK
+      items:
+        - {material: COBBLESTONE, buy: 4, sell: 1}
+        - {material: STONE, buy: 6, sell: 1.5}
+        - {material: DIRT, buy: 2, sell: 0.5}
+        - {material: SAND, buy: 4, sell: 1}
+        - {material: GRAVEL, buy: 4, sell: 1}
+        - {material: OAK_LOG, buy: 12, sell: 3}
+        - {material: SPRUCE_LOG, buy: 12, sell: 3}
+        - {material: BIRCH_LOG, buy: 12, sell: 3}
+        - {material: OAK_PLANKS, buy: 3, sell: 0.75}
+        - {material: GLASS, buy: 8, sell: 2}
+        - {material: BRICKS, buy: 20, sell: 5}
+        - {material: DEEPSLATE, buy: 8, sell: 2}
+        - {material: OBSIDIAN, buy: 150, sell: 30}
+        - {material: NETHERRACK, buy: 2, sell: 0.5}
+        - {material: END_STONE, buy: 12, sell: 3}
+    ores:
+      title: "&bOres & Minerals"
+      icon: DIAMOND
+      items:
+        - {material: COAL, buy: 10, sell: 3}
+        - {material: COPPER_INGOT, buy: 15, sell: 4}
+        - {material: IRON_INGOT, buy: 40, sell: 12}
+        - {material: GOLD_INGOT, buy: 60, sell: 18}
+        - {material: LAPIS_LAZULI, buy: 15, sell: 4}
+        - {material: REDSTONE, buy: 8, sell: 2}
+        - {material: QUARTZ, buy: 20, sell: 6}
+        - {material: EMERALD, buy: 300, sell: 90}
+        - {material: DIAMOND, buy: 500, sell: 150}
+        - {material: NETHERITE_SCRAP, buy: 2500, sell: 700}
+        - {material: NETHERITE_INGOT, buy: 12000, sell: 3000}
+    food:
+      title: "&6Food"
+      icon: COOKED_BEEF
+      items:
+        - {material: BREAD, buy: 8, sell: 2}
+        - {material: APPLE, buy: 6, sell: 1.5}
+        - {material: COOKED_BEEF, buy: 12, sell: 3}
+        - {material: COOKED_PORKCHOP, buy: 12, sell: 3}
+        - {material: COOKED_CHICKEN, buy: 10, sell: 2.5}
+        - {material: BAKED_POTATO, buy: 6, sell: 1.5}
+        - {material: PUMPKIN_PIE, buy: 12, sell: 3}
+        - {material: GOLDEN_CARROT, buy: 25, sell: 6}
+        - {material: GOLDEN_APPLE, buy: 300, sell: 40}
+    farming:
+      title: "&2Farming"
+      icon: WHEAT
+      items:
+        - {material: WHEAT, buy: 4, sell: 1}
+        - {material: WHEAT_SEEDS, buy: 2, sell: 0.25}
+        - {material: CARROT, buy: 4, sell: 1}
+        - {material: POTATO, buy: 4, sell: 1}
+        - {material: SUGAR_CANE, buy: 4, sell: 1}
+        - {material: PUMPKIN, buy: 8, sell: 2}
+        - {material: MELON, buy: 8, sell: 2}
+        - {material: BONE_MEAL, buy: 5, sell: 1}
+        - {material: COCOA_BEANS, buy: 6, sell: 1.5}
+        - {material: NETHER_WART, buy: 12, sell: 3}
+        - {material: KELP, buy: 3, sell: 0.75}
+        - {material: BAMBOO, buy: 2, sell: 0.5}
+    combat:
+      title: "&cCombat"
+      icon: DIAMOND_SWORD
+      items:
+        - {material: IRON_SWORD, buy: 150, sell: 0}
+        - {material: DIAMOND_SWORD, buy: 600, sell: 0}
+        - {material: BOW, buy: 80, sell: 10}
+        - {material: CROSSBOW, buy: 100, sell: 12}
+        - {material: ARROW, buy: 3, sell: 0.5}
+        - {material: SHIELD, buy: 60, sell: 0}
+        - {material: IRON_CHESTPLATE, buy: 320, sell: 0}
+        - {material: DIAMOND_CHESTPLATE, buy: 1200, sell: 0}
+        - {material: ENDER_PEARL, buy: 120, sell: 30}
+        - {material: EXPERIENCE_BOTTLE, buy: 40, sell: 10}
+        - {material: TOTEM_OF_UNDYING, buy: 5000, sell: 1000}
+    redstone:
+      title: "&4Redstone"
+      icon: REDSTONE
+      items:
+        - {material: REDSTONE, buy: 8, sell: 2}
+        - {material: REPEATER, buy: 20, sell: 5}
+        - {material: COMPARATOR, buy: 40, sell: 10}
+        - {material: PISTON, buy: 40, sell: 10}
+        - {material: STICKY_PISTON, buy: 60, sell: 15}
+        - {material: OBSERVER, buy: 40, sell: 10}
+        - {material: HOPPER, buy: 80, sell: 20}
+        - {material: DISPENSER, buy: 50, sell: 12}
+        - {material: DROPPER, buy: 45, sell: 10}
+        - {material: REDSTONE_LAMP, buy: 40, sell: 10}
+    misc:
+      title: "&dMisc"
+      icon: ENDER_CHEST
+      items:
+        - {material: STRING, buy: 4, sell: 1}
+        - {material: GUNPOWDER, buy: 10, sell: 3}
+        - {material: BONE, buy: 3, sell: 0.75}
+        - {material: ROTTEN_FLESH, buy: 1, sell: 0.25}
+        - {material: SLIME_BALL, buy: 15, sell: 4}
+        - {material: BLAZE_ROD, buy: 40, sell: 10}
+        - {material: GHAST_TEAR, buy: 100, sell: 25}
+        - {material: NAME_TAG, buy: 100, sell: 20}
+        - {material: SADDLE, buy: 200, sell: 50}
+        - {material: FIREWORK_ROCKET, buy: 15, sell: 3}
+        - {material: ENDER_CHEST, buy: 600, sell: 0}
+
+# ------------------------------------------------------------
+#  Shards (second currency)
+#  Earned by playing and by killing players. Spend them in
+#  /shardshop and on spawners in /spawnershop.
+# ------------------------------------------------------------
+shards:
+  starting: 0              # shards a brand new player begins with
+  per-kill: 1              # shards for killing another player
+  playtime-minutes: 10     # earn shards every N minutes online (0 = off)
+  playtime-amount: 1       # how many shards each time
+  # price = shards. Optional: name (display), command (run by console instead of
+  # giving the item; %player% is replaced). Max 45 offers.
+  shop:
+    - {material: DIAMOND, amount: 16, price: 20}
+    - {material: EXPERIENCE_BOTTLE, amount: 64, price: 30}
+    - {material: ENDER_PEARL, amount: 16, price: 25}
+    - {material: GOLDEN_APPLE, amount: 8, price: 30}
+    - {material: TOTEM_OF_UNDYING, amount: 1, price: 60}
+    - {material: ENCHANTED_GOLDEN_APPLE, amount: 1, price: 150}
+    - {material: NETHERITE_INGOT, amount: 1, price: 250}
+    - {material: ELYTRA, amount: 1, price: 800}
+    - {material: GOLD_INGOT, name: "&a$100,000 Cash", amount: 1, price: 100, command: "eco give %player% 100000"}
+
+# ------------------------------------------------------------
+#  Spawners
+#  price  = money cost (0 = not sold for money)
+#  shards = shard cost (0 = not sold for shards)
+#  Any spawnable living mob works (type = vanilla entity name). Max 45 entries.
+#  Left-click buys with money, right-click buys with shards.
+# ------------------------------------------------------------
+spawners:
+  silk-touch-pickup: true   # a Silk Touch tool picks a spawner up and keeps its mob
+  shop:
+    - {type: PIG,               price: 25000,  shards: 30}
+    - {type: COW,               price: 30000,  shards: 35}
+    - {type: CHICKEN,           price: 25000,  shards: 30}
+    - {type: SHEEP,             price: 30000,  shards: 35}
+    - {type: ZOMBIE,            price: 75000,  shards: 90}
+    - {type: SKELETON,          price: 100000, shards: 120}
+    - {type: SPIDER,            price: 75000,  shards: 90}
+    - {type: CAVE_SPIDER,       price: 60000,  shards: 70}
+    - {type: CREEPER,           price: 125000, shards: 150}
+    - {type: WITCH,             price: 150000, shards: 180}
+    - {type: MAGMA_CUBE,        price: 150000, shards: 180}
+    - {type: ZOMBIFIED_PIGLIN,  price: 200000, shards: 240}
+    - {type: BLAZE,             price: 250000, shards: 300}
+    - {type: ENDERMAN,          price: 300000, shards: 360}
+    - {type: IRON_GOLEM,        price: 500000, shards: 600}

@@ -1,0 +1,49 @@
+name: SMPCore
+version: '${project.version}'
+main: com.smpcore.SMPCore
+api-version: '26.2'
+description: DonutSMP-style core - economy, shards, shop, spawner shop, sell, auction house, homes, TPA, RTP, ranks and a progression map.
+
+commands:
+  balance:   {aliases: [bal, money], description: Check a balance, usage: "/balance [player]"}
+  pay:       {description: Pay another player, usage: "/pay <player> <amount>"}
+  baltop:    {aliases: [moneytop, richest], description: Richest players, usage: "/baltop"}
+  eco:       {description: Admin economy control, usage: "/eco <give|take|set> <player> <amount>"}
+  shop:      {description: Open the shop, usage: "/shop"}
+  sell:      {description: Sell items, usage: "/sell [hand|all]"}
+  ah:        {aliases: [auction, auctionhouse], description: Auction house, usage: "/ah [sell <price>|claim]"}
+  tpa:       {description: Request to teleport to a player, usage: "/tpa <player>"}
+  tpahere:   {description: Request a player to teleport to you, usage: "/tpahere <player>"}
+  tpaccept:  {aliases: [tpyes], description: Accept a teleport request, usage: "/tpaccept"}
+  tpadeny:   {aliases: [tpno], description: Deny a teleport request, usage: "/tpadeny"}
+  sethome:   {description: Set a home, usage: "/sethome [name]"}
+  home:      {description: Teleport to a home, usage: "/home [name]"}
+  delhome:   {description: Delete a home, usage: "/delhome <name>"}
+  homes:     {description: List your homes, usage: "/homes"}
+  spawn:     {description: Teleport to spawn, usage: "/spawn"}
+  setspawn:  {description: Set the spawn (admin), usage: "/setspawn"}
+  warp:      {description: Teleport to a warp, usage: "/warp <name>"}
+  warps:     {description: List warps, usage: "/warps"}
+  setwarp:   {description: Create a warp (admin), usage: "/setwarp <name>"}
+  delwarp:   {description: Delete a warp (admin), usage: "/delwarp <name>"}
+  rtp:       {aliases: [wild, randomtp], description: Random teleport, usage: "/rtp"}
+  back:      {description: Return to your previous location, usage: "/back"}
+  progress:  {aliases: [ranks, progression, map], description: Open the progression map, usage: "/progress"}
+  stats:     {description: View player stats, usage: "/stats [player]"}
+  msg:       {aliases: [w, tell, m, whisper], description: Private message, usage: "/msg <player> <message>"}
+  reply:     {aliases: [r], description: Reply to the last message, usage: "/reply <message>"}
+  rank:      {description: View or set ranks (admin), usage: "/rank <player> <member|mod|admin>"}
+  mute:      {description: Mute a player (mod), usage: "/mute <player> [minutes] [reason]"}
+  unmute:    {description: Unmute a player (mod), usage: "/unmute <player>"}
+  kick:      {description: Kick a player (mod), usage: "/kick <player> [reason]"}
+  ban:       {description: Ban a player (admin), usage: "/ban <player> [reason]"}
+  unban:     {aliases: [pardon], description: Unban a player (admin), usage: "/unban <player>"}
+  vanish:    {aliases: [v], description: Toggle vanish (mod), usage: "/vanish"}
+  sc:        {aliases: [staffchat], description: Staff chat (mod), usage: "/sc [message]"}
+  invsee:    {description: View a player's inventory (mod), usage: "/invsee <player>"}
+  stp:       {description: Staff teleport to a player (mod), usage: "/stp <player>"}
+  shards:    {aliases: [shard], description: View, pay and manage shards, usage: "/shards [player|top|pay|shop]"}
+  shardshop: {aliases: [shshop], description: Open the shard shop, usage: "/shardshop"}
+  spawnershop: {aliases: [spawners], description: Open the spawner shop, usage: "/spawnershop"}
+  spawner:   {description: Give a spawner (admin), usage: "/spawner give <player> <mob> [amount]"}
+  smpcore:   {description: Plugin admin command, usage: "/smpcore reload"}
