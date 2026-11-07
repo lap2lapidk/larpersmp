@@ -24,6 +24,10 @@ public final class InfoCommands extends BaseCmd {
                 Player p = player(s);
                 if (p != null) new ProgressMenu(plugin, p).open(p);
             }
+            case "menu" -> {
+                Player p = player(s);
+                if (p != null) new MainMenu(plugin, p).open(p);
+            }
             case "stats" -> stats(s, a);
             case "msg" -> msg(s, a);
             case "reply" -> reply(s, a);

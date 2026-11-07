@@ -26,17 +26,17 @@ public final class TeleportCommands extends BaseCmd {
             case "home" -> home(p, a);
             case "delhome" -> delHome(p, a);
             case "homes" -> homes(p);
-            case "spawn" -> plugin.teleports().teleport(p, plugin.locations().spawn(), "spawn");
+            case "spawn" -> {
+                if (plugin.getConfig().getBoolean("menus.spawn-opens-menu", true)) new TravelMenu(plugin, p).open(p);
+                else plugin.teleports().teleport(p, plugin.locations().spawn(), "spawn");
+            }
             case "setspawn" -> {
                 if (!plugin.ranks().require(p, Rank.ADMIN)) return;
                 plugin.locations().setSpawn(p.getLocation());
                 Util.msg(p, "Spawn set to your location.");
             }
             case "warp" -> warp(p, a);
-            case "warps" -> {
-                List<String> names = plugin.locations().warpNames();
-                Util.msg(p, names.isEmpty() ? "&cNo warps yet." : "Warps: &f" + String.join("&7, &f", names));
-            }
+            case "warps" -> new WarpMenu(plugin, p, 0).open(p);
             case "setwarp" -> setWarp(p, a);
             case "delwarp" -> delWarp(p, a);
             case "rtp" -> plugin.teleports().rtp(p);
@@ -53,7 +53,7 @@ public final class TeleportCommands extends BaseCmd {
 
     private void request(Player p, String[] a, boolean here) {
         if (a.length < 1) {
-            usage(p, here ? "/tpahere <player>" : "/tpa <player>");
+            new PlayerSelectMenu(plugin, p, here, 0).open(p);
             return;
         }
         Player t = target(p, a[0]);
@@ -108,18 +108,17 @@ public final class TeleportCommands extends BaseCmd {
 
     private void home(Player p, String[] a) {
         PlayerData d = plugin.data().get(p);
-        if (d.homes.isEmpty()) {
-            Util.msg(p, "&cYou don't have any homes. Use &f/sethome&c.");
+        if (a.length == 0) {
+            // no name given: a single home is a straight teleport, otherwise pick from the GUI
+            if (d.homes.size() == 1) {
+                String only = d.homes.keySet().iterator().next();
+                plugin.teleports().teleport(p, d.homes.get(only), "home " + only);
+            } else {
+                new HomesMenu(plugin, p).open(p);
+            }
             return;
         }
-        String name;
-        if (a.length > 0) name = a[0].toLowerCase();
-        else if (d.homes.containsKey("home")) name = "home";
-        else if (d.homes.size() == 1) name = d.homes.keySet().iterator().next();
-        else {
-            Util.msg(p, "Choose a home: &f" + String.join("&7, &f", d.homes.keySet()));
-            return;
-        }
+        String name = a[0].toLowerCase();
         Location l = d.homes.get(name);
         if (l == null) {
             Util.msg(p, "&cNo home called &f" + name + "&c. Your homes: &f" + String.join(", ", d.homes.keySet()));
@@ -139,17 +138,14 @@ public final class TeleportCommands extends BaseCmd {
     }
 
     private void homes(Player p) {
-        PlayerData d = plugin.data().get(p);
-        int max = plugin.progression().maxHomes(p);
-        if (d.homes.isEmpty()) Util.msg(p, "No homes yet (0/" + max + "). Use &f/sethome&7.");
-        else Util.msg(p, "Homes (" + d.homes.size() + "/" + max + "): &f" + String.join("&7, &f", d.homes.keySet()));
+        new HomesMenu(plugin, p).open(p);
     }
 
     // -------------------------------------------------------------- warps
 
     private void warp(Player p, String[] a) {
         if (a.length < 1) {
-            usage(p, "/warp <name>   (see /warps)");
+            new WarpMenu(plugin, p, 0).open(p);
             return;
         }
         Location l = plugin.locations().warp(a[0]);

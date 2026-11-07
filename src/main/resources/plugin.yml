@@ -28,6 +28,7 @@ commands:
   delwarp:   {description: Delete a warp (admin), usage: "/delwarp <name>"}
   rtp:       {aliases: [wild, randomtp], description: Random teleport, usage: "/rtp"}
   back:      {description: Return to your previous location, usage: "/back"}
+  menu:      {aliases: [hub, smpmenu], description: Open the main menu, usage: "/menu"}
   progress:  {aliases: [ranks, progression, map], description: Open the progression map, usage: "/progress"}
   stats:     {description: View player stats, usage: "/stats [player]"}
   msg:       {aliases: [w, tell, m, whisper], description: Private message, usage: "/msg <player> <message>"}

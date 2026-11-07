@@ -50,7 +50,7 @@ public final class SMPCore extends JavaPlugin {
         bind(new ShopCommands(this), "shop", "sell", "ah");
         bind(new StaffCommands(this), "rank", "mute", "unmute", "kick", "ban", "unban", "vanish", "sc",
                 "invsee", "stp");
-        bind(new InfoCommands(this), "progress", "stats", "msg", "reply", "smpcore");
+        bind(new InfoCommands(this), "menu", "progress", "stats", "msg", "reply", "smpcore");
         bind(new ShardCommands(this), "shards", "shardshop");
         bind(new SpawnerCommands(this), "spawnershop", "spawner");
 

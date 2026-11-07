@@ -20,6 +20,13 @@ teleport:
   warmup-seconds: 3          # staff (mod+) skip the warmup
   tpa-timeout-seconds: 60
 
+# GUI options
+menus:
+  spawn-opens-menu: true     # /spawn opens the Travel menu; false = /spawn teleports straight away
+  default-warp-icon: ENDER_PEARL
+  warp-icons:                # optional per-warp icon, e.g.  pvp: DIAMOND_SWORD
+    # pvp: DIAMOND_SWORD
+
 rtp:
   world: world
   min-radius: 500
